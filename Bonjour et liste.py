@@ -1,5 +1,5 @@
 # Imprime le texte "Bonjour le monde !"
-print('Bonjour le monde !')
+print('Bonjour le monde 2!')
 
 # Calcule la somme de deux nombres
 a = 10
