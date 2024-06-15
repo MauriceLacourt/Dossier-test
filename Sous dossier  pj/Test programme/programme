@@ -1,0 +1,28 @@
+import sqlite3
+
+# Créer une connexion à la base de données (ou la créer si elle n'existe pas)
+connexion = sqlite3.connect('ma_base_de_donnees.db')
+
+# Créer un curseur pour exécuter des requêtes SQL
+curseur = connexion.cursor()
+
+# Créer une table (si elle n'existe pas déjà)
+curseur.execute("""
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL
+);
+""")
+
+# Insérer quelques données d'exemple
+curseur.execute("INSERT INTO utilisateurs (nom, prenom, email) VALUES (?, ?, ?)", ("Martin", "Dupont", "martind@exemple.com"))
+curseur.execute("INSERT INTO utilisateurs (nom, prenom, email) VALUES (?, ?, ?)", ("Marie", "Durant", "maried@exemple.com"))
+
+# Valider les modifications et fermer la connexion
+connexion.commit()
+connexion.close()
+
+print("Base de données créée et testée avec succès !")
+
